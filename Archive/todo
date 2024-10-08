@@ -1,0 +1,55 @@
+1. Push une image docker sur un registery github
+2. Je veux pull une image docker sur un registery github
+
+
+Git Token: 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
+
+
+Git token 2:
+
+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
+
+
+DockerToken: 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
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: area-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: area-backend
+  template:
+    metadata:
+      labels:
+        app: area-backend
+    spec:
+      containers:
+      - name: area-backend
+        image: area-backend:v1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 250m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: area-backend-service
+spec:
+  selector:
+    app: area-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort

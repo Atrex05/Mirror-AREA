@@ -1,0 +1,80 @@
+"/about.json": {
+  "get": {
+    "summary": "Get information about the API",
+    "responses": {
+      "200": {
+        "description": "API information retrieved successfully",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "client": {
+                  "type": "object",
+                  "properties": {
+                    "host": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["host"]
+                },
+                "server": {
+                  "type": "object",
+                  "properties": {
+                    "current_time": {
+                      "type": "integer"
+                    },
+                    "services": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "actions": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["name", "description"]
+                            }
+                          },
+                          "reactions": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["name", "description"]
+                            }
+                          }
+                        },
+                        "required": ["name", "actions", "reactions"]
+                      }
+                    }
+                  },
+                  "required": ["current_time", "services"]
+                }
+              },
+              "required": ["client", "server"]
+            }
+          }
+        }
+      }
+    }
+  }
+},

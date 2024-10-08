@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  db-service:
+    image: ghcr.io/epitechpromo2027/area-database:latest
+    ports:
+      - "${DB_SERVICE_PORT:-8082}:8082"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_TIMEZONE=${DB_TIMEZONE:-UTC}
+    depends_on:
+      - db
+
+  monitoring-service:
+    image: ghcr.io/epitechpromo2027/area-monitoring:latest
+    ports:
+      - "${MONITORING_PORT:-8081}:8081"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5433
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      - db
+
+  frontend:
+    image: ghcr.io/epitechpromo2027/area-frontend:latest
+    ports:
+      - "${FRONTEND_PORT:-3000}:${FRONTEND_PORT:-3000}"
+    environment:
+      - FRONTEND_PORT=${FRONTEND_PORT:-3000}
+    depends_on:
+      - db-service
+      - monitoring-service
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+
+volumes:
+  postgres_data: 

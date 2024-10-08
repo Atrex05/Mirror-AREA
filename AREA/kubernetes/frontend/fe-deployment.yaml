@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: area-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: area-frontend
+  template:
+    metadata:
+      labels:
+        app: area-frontend
+    spec:
+      containers:
+      - name: area-frontend
+        image: ghcr.io/epitechpromo2027/area-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: dockercred
