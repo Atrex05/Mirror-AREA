@@ -25,13 +25,16 @@ jobs:
     - name: Decode Database .env file
       run: cat ./AREA/Backend/Database/.env.encoded | base64 -d > ./AREA/Backend/Database/.env
 
+    - name: Decode Monitoring .env file
+      run: cat ./AREA/Backend/Monitoring/.env.encoded | base64 -d > ./AREA/Backend/Monitoring/.env
+
     - name: Build and push Database image service
       uses: docker/build-push-action@v2
       with:
         context: ./AREA/Backend/Database
         file: ./AREA/Backend/Database/Dockerfile
         push: true
-        tags: ghcr.io/atrex05/Mirror-AREA/area-database:latest
+        tags: ghcr.io/atrex05/mirror-area/area-database:latest
 
     - name: Build and push frontend image
       uses: docker/build-push-action@v2
@@ -39,10 +42,7 @@ jobs:
         context: ./AREA/Frontend/FrontWeb
         file: ./AREA/Frontend/FrontWeb/Dockerfile
         push: true
-        tags: ghcr.io/atrex05/Mirror-AREA/area-frontend:latest
-
-    - name: Decode Monitoring .env file
-      run: cat ./AREA/Backend/Monitoring/.env.encoded | base64 -d > ./AREA/Backend/Monitoring/.env
+        tags: ghcr.io/atrex05/mirror-area/area-frontend:latest
 
     - name: Build and push monitoring service image
       uses: docker/build-push-action@v2
@@ -50,4 +50,4 @@ jobs:
         context: ./AREA/Backend/Monitoring
         file: ./AREA/Backend/Monitoring/Dockerfile
         push: true
-        tags: ghcr.io/atrex05/Mirror-AREA/area-monitoring:latest
+        tags: ghcr.io/atrex05/mirror-area/area-monitoring:latest
