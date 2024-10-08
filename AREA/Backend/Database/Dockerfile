@@ -7,7 +7,8 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Copy all source files
-COPY . .
+COPY *.go ./
+COPY .env.encoded ./
 
 # Install dependencies explicitly if needed
 RUN go get github.com/joho/godotenv \
