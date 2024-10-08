@@ -1,0 +1,39 @@
+# Ignore for Visual Studio Code
+.vscode/
+
+# Ignore for Golang
+/go/bin/
+/go/pkg/
+/go/src/
+/*.exe
+/*.out
+
+# Ignore for Vue.js and Node.js
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/coverage/
+
+# Ignore for React Native
+android/
+ios/
+*.log
+*.lock
+*.env
+.expo/
+.expo-shared/
+
+# Ignore for Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+.env
+*.env
+*.venv
+venv/
+virtualenv/
