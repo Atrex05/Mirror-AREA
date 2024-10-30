@@ -15,3 +15,21 @@ You can access our documentation by clicking on the badge above or visiting
 API Documentation:
 
 https://app.swaggerhub.com/apis-docs/ALEXISMER3/AREA/1.0.2#/
+
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
+oui
